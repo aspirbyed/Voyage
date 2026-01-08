@@ -1,0 +1,749 @@
+/*========================================
+  GLOBAL THEME — OPTION C (PREMIUM REDESIGN)
+=========================================*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --blue-0: #000814;
+  --blue-1: #001D3D;
+  --blue-2: #003566;
+  --gold-1: #FFC300;
+  --gold-2: #FFD60A;
+  --white: #ffffff;
+  --blackish: #1a1a1a;
+
+  /* NEW SYSTEM */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+
+  --card-bg: rgba(0, 29, 61, 0.35);
+  --input-bg: rgba(255, 255, 255, 0.10);
+
+  --border-soft: rgba(255, 214, 10, 0.22);
+
+  --shadow-lg: 0 18px 40px rgba(0, 0, 0, 0.55);
+  --shadow-md: 0 12px 28px rgba(0, 0, 0, 0.45);
+  --shadow-sm: 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+
+body {
+  background: radial-gradient(circle at top, var(--blue-2) 0%, var(--blue-0) 70%);
+  font-family: 'Inter', sans-serif;
+  color: var(--white);
+  position: relative;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("../images/snowflake.png") no-repeat center center;
+  background-size: min(40vw, 360px);    
+  opacity: 0.22;                        
+  pointer-events: none;
+  z-index: -1;
+}
+
+#initial-loading {
+  transition: opacity 0.5s ease;
+}
+#initial-loading.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/*========================================
+              TYPOGRAPHY
+=========================================*/
+#home > div > h1, .onboarding h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.7rem;
+  font-weight: 600;
+  color: #FFD60A;
+  text-shadow: 0 0 30px rgba(255,214,10,0.5);
+  letter-spacing: 1px;
+}
+
+.card h3, #step1 h2, #step2 h2, #step3 h2 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: 1.8rem;
+  color: #FFD60A;
+}
+
+body, input, button, p, li {
+  font-family: 'Lora', serif;
+}
+
+/*========================================
+              LAYOUT
+=========================================*/
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.screen {
+  max-width: 600px;
+  margin: auto;
+  padding: 2rem;
+}
+
+.card {
+  background: var(--glass-dark);
+  backdrop-filter: blur(14px);
+  border-radius: var(--radius-lg);
+  padding: 1.8rem;
+  border: 1px solid var(--border-glow);
+  box-shadow: var(--shadow-md);
+}
+
+/*========================================
+                INPUTS
+=========================================*/
+input[type="text"], input[type="number"], textarea {
+  width: 100%;
+  background: var(--input-bg);
+  border: 1px solid var(--border-soft);
+  padding: 14px;
+  border-radius: var(--radius-md);
+  color: var(--white);
+  font-size: 1.15rem;
+  margin: 1rem 0;
+  transition: 0.2s;
+}
+
+input:focus, textarea:focus {
+  border-color: var(--gold-1);
+  outline: none;
+  background: rgba(255,255,255,0.18);
+}
+
+input::placeholder, textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.number-input button {
+  background: var(--gold-1);
+  border: none;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  color: var(--blackish);
+  font-size: 1.6rem;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: 0.2s ease;
+}
+.number-input button:hover {
+  background: var(--gold-2);
+  transform: translateY(-2px);
+}
+
+/*========================================
+              BUTTONS
+=========================================*/
+button {
+  background: transparent;
+  border: 2px solid var(--gold-2);
+  color: var(--gold-2);
+  padding: 0.75rem 1.6rem;
+  font-size: 1rem;
+  border-radius: 32px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+button:hover {
+  background: var(--gold-2);
+  color: var(--dark);
+  transform: translateY(-2px);
+}
+
+button.primary {
+  background: var(--gold-1);
+  border-color: var(--gold-1);
+  color: var(--dark);
+}
+
+button.primary:hover {
+  background: var(--gold-2);
+}
+
+/*========================================
+              HEADER
+=========================================*/
+header {
+  padding: 1rem 2rem;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-sm);
+}
+
+/*========================================
+            PROGRESS BAR
+=========================================*/
+.progress-bar {
+  height: 22px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+#progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(91deg, #ffffff, #00d5ff);
+  transition: width 1s ease;
+}
+
+/*========================================
+          COMMUNITY SECTION
+=========================================*/
+.global-counter {
+  background: rgba(255, 195, 0, 0.15);
+  border-radius: var(--radius-md);
+  padding: 1.4rem;
+  border: 1px solid rgba(255,195,0,0.25);
+}
+
+#leaderboard li {
+  padding: 14px;
+  font-size: 1.15rem;
+  background: rgba(255,255,255,0.06);
+  border-radius: var(--radius-md);
+  margin: 10px 0;
+  box-shadow: var(--shadow-sm);
+}
+
+#leaderboard strong {
+  color: var(--gold-2);
+}
+
+/* Scrollbar */
+#leaderboard-container::-webkit-scrollbar {
+  width: 8px;
+}
+#leaderboard-container::-webkit-scrollbar-thumb {
+  background: var(--gold-1);
+  border-radius: 10px;
+}
+#leaderboard-container::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-2);
+}
+
+#logout {
+  color: var(--gold-2);
+  font-size: 1rem;
+  text-decoration: underline;
+}
+
+/*========================================
+              ANIMATIONS
+=========================================*/
+.step { animation: fadeIn 0.75s ease; }
+.hidden { display: none !important; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.tabs, .tab-content { display: none !important; }
+
+/*========================================
+              RESPONSIVE
+=========================================*/
+@media (max-width: 500px) {
+  .about-contact p {
+    font-size: 0.8rem !important;
+  }
+}
+
+@media (max-width: 500px) {
+  #home > div > h1,
+  .onboarding h1 {
+    font-size: 2.6rem !important;
+    letter-spacing: 1px !important;
+  }
+
+  .welcome-msg p {
+    font-size: 1.25rem !important;
+  }
+
+  .card h3,
+  #step1 h2, #step2 h2, #step3 h2 {
+    font-size: 1.5rem !important;
+  }
+
+  .global-counter h2,
+  #global-total-text {
+    font-size: 1.45rem !important;
+    line-height: 1.4 !important;
+  }
+
+  #progress-text {
+    font-size: 1.3rem !important;
+  }
+
+  #community-list li {
+    font-size: 1rem !important;
+    padding: 11px 0 !important;
+    line-height: 1.4 !important;
+  }
+
+  #total-pilgrims {
+    font-size: 0.88rem !important;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  textarea,
+  #custom-add {
+    font-size: 1.1rem !important;
+    padding: 11px !important;
+  }
+
+  button.primary {
+    padding: 10px 18px !important;
+    font-size: 0.95rem !important;
+  }
+
+  #home .card p[style*="text-align: left"] {
+    font-size: 0.88rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 1.2rem !important;
+  }
+
+  #logout {
+    font-size: 0.95rem !important;
+  }
+  
+  #leaderboard-container {
+    max-height: 62vh !important;
+  }
+
+  #step2 input#goal {
+    font-size: 1.8rem !important;
+  }
+}
+
+@media (max-width: 375px) {
+  #home > div > h1,
+  .onboarding h1 {
+    font-size: 2.4rem !important;
+  }
+
+  .welcome-msg p {
+    font-size: 1.2rem !important;
+  }
+
+  .card {
+    padding: 1.6rem !important;
+    margin: 1.2rem auto !important;
+  }
+
+  .card h3,
+  #step1 h2, #step2 h2, #step3 h2 {
+    font-size: 1.35rem !important;
+  }
+
+  .global-counter h2,
+  #global-total-text {
+    font-size: 1.35rem !important;
+  }
+
+  #progress-text {
+    font-size: 1.15rem !important;
+  }
+
+  #community-list li {
+    font-size: 0.94rem !important;
+    padding: 9px 0 !important;
+    line-height: 1.4 !important;
+  }
+
+  #total-pilgrims {
+    font-size: 0.82rem !important;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  textarea,
+  #custom-add {
+    font-size: 1rem !important;
+    padding: 10px !important;
+  }
+
+  button {
+    padding: 9px 16px !important;
+    font-size: 0.92rem !important;
+  }
+
+  button.primary {
+    padding: 10px 20px !important;
+  }
+
+  #home .card p[style*="text-align: left"] {
+    font-size: 0.82rem !important;
+    line-height: 1.45 !important;
+    margin-bottom: 1rem !important;
+  }
+
+  #logout {
+    font-size: 0.9rem !important;
+  }
+
+  #leaderboard-container {
+    max-height: 60vh !important;
+  }
+}
+
+/*========================================
+              ONBOARDING
+=========================================*/
+.onboarding-card {
+  background: rgba(0, 29, 61, 0.45);
+  backdrop-filter: blur(16px);
+  border-radius: 26px;
+  padding: 3rem 2.5rem;
+  max-width: 480px;
+  width: 92%;
+  margin: 2rem auto;
+  text-align: center;
+  border: 1.5px solid rgba(255, 195, 0, 0.3);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+}
+
+.onboarding-card h1 {
+  margin-bottom: 2rem;
+}
+
+.onboarding-text {
+  font-size: 1.15rem;
+  opacity: 0.92;
+  margin: 1.2rem 0 2rem;
+  line-height: 1.6;
+}
+
+.hint {
+  font-size: 0.92rem;
+  opacity: 0.78;
+  margin: 1rem 0 2rem;
+  color: #ddd;
+}
+
+.goal-input-wrapper {
+  margin: 2.5rem 0;
+}
+
+#goal {
+  font-size: 2.2rem !important;
+  padding: 16px !important;
+  max-width: 320px;
+  margin: 0 auto;
+  display: block;
+}
+
+.intentions-fixed {
+  text-align: left;
+  background: rgba(255, 195, 0, 0.08);
+  padding: 1.4rem;
+  border-radius: 14px;
+  margin: 1.8rem 0;
+  border: 1px solid rgba(255, 195, 0, 0.2);
+}
+
+.intention-item {
+  font-size: 1.05rem;
+  margin: 0.8rem 0;
+  opacity: 0.95;
+}
+
+#custom-intention {
+  min-height: 100px;
+  resize: vertical;
+}
+
+@media (max-width: 500px) {
+  .onboarding-card {
+    padding: 2.2rem 1.6rem !important;
+    margin: 1rem auto !important;
+  }
+
+  .onboarding-card h1 {
+    font-size: 2.6rem !important;
+  }
+
+  .onboarding-card h2 {
+    font-size: 1.5rem !important;
+  }
+
+  .onboarding-text,
+  .hint {
+    font-size: 0.94rem !important;
+    line-height: 1.5 !important;
+  }
+
+  #goal {
+    font-size: 1.8rem !important;
+    padding: 12px !important;
+  }
+
+  .intention-item {
+    font-size: 0.96rem !important;
+  }
+
+  #custom-intention {
+    font-size: 1rem !important;
+    padding: 11px !important;
+  }
+
+  button.primary {
+    padding: 10px 20px !important;
+    font-size: 0.95rem !important;
+  }
+}
+
+@media (max-width: 375px) {
+  .onboarding-card h1 {
+    font-size: 2.4rem !important;
+  }
+
+  .onboarding-card h2 {
+    font-size: 1.35rem !important;
+  }
+
+  .onboarding-text,
+  .hint {
+    font-size: 0.88rem !important;
+  }
+
+  #goal {
+    font-size: 1.65rem !important;
+  }
+
+  .intention-item {
+    font-size: 0.92rem !important;
+  }
+
+  button.primary {
+    font-size: 0.92rem !important;
+  }
+}
+
+/* About & Contact Section */
+.about-contact {
+  text-align: center;
+  padding: 3rem 1rem 2rem;
+  font-size: 1.05rem;
+  color: var(--white);
+  opacity: 0.9;
+  line-height: 1.7;
+  border-top: 1px solid rgba(255, 195, 0, 0.18);
+  margin-top: 2.5rem;
+}
+
+.contact-info {
+  margin-top: 1.6rem;
+  font-size: 0.96rem;
+  opacity: 0.78;
+}
+
+.contact-email a {
+  color: var(--gold-2);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.contact-social {
+  margin-top: 0.8rem;
+}
+
+.contact-social a {
+  color: var(--gold-1);
+  text-decoration: none;
+  font-weight: 500;
+  margin: 0 4px;
+  transition: color 0.3s ease;
+}
+
+.contact-social a:hover {
+  color: var(--gold-2);
+  text-decoration: underline;
+}
+
+@media (max-width: 500px) {
+  .about-contact {
+    font-size: 1rem;
+    padding: 2.5rem 1rem 1.8rem;
+  }
+  .contact-info {
+    font-size: 0.92rem;
+  }
+}
+
+/*========================================
+                INTRO PAGE
+=========================================*/
+#intro-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background: #000814;
+}
+
+.intro-card {
+  background: rgba(0, 29, 61, 0.5);
+  backdrop-filter: blur(16px);
+  border-radius: 26px;
+  padding: 3.2rem 2.8rem;
+  max-width: 560px;
+  width: 92%;
+  text-align: center;
+  border: 1.5px solid rgba(255, 195, 0, 0.3);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.7);
+}
+
+.intro-card h1 {
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: 3.4rem;
+  color: #FFD60A;
+  text-shadow: 0 0 30px rgba(255, 214, 10, 0.4);
+  margin: 0 0 1rem 0;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: #FFC300;
+  margin: 1.5rem 0 2.5rem;
+  line-height: 1.6;
+  opacity: 0.95;
+}
+
+.intro-content {
+  text-align: left;
+  font-size: 1.12rem;
+  line-height: 1.8;
+  margin: 2rem 0;
+  color: #f0f0f0;
+}
+
+.intro-content p{
+  text-align: justify;
+}
+
+.intro-content h3{
+  text-align: center;
+  color: #FFD60A;
+  font-family: 'Cinzel', serif;
+  font-size: 1.7rem;
+  margin: 2.2rem 0 1.2rem;
+}
+
+.intentions,
+.how-to {
+  background: rgba(255, 195, 0, 0.1);
+  padding: 1.4rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 195, 0, 0.2);
+  margin: 1.5rem 0;
+}
+
+.intentions li,
+.how-to li {
+  margin: 0.8rem 0;
+  padding-left: 0.4rem;
+}
+
+.learn-more {
+  display: inline-block;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  color: #FFD60A;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.closing {
+  text-align: center;
+  font-size: 1.15rem;
+  margin: 2.5rem 0 2rem;
+  opacity: 0.92;
+  font-style: italic;
+  color: #fff;
+}
+
+/* RESPONSIVE — < 500px */
+@media (max-width: 500px) {
+  .intro-card {
+    padding: 2.4rem 2rem;
+    margin: 1rem auto;
+  }
+  .intro-card h1 {
+    font-size: 2.8rem !important;
+  }
+  .subtitle {
+    font-size: 1.15rem !important;
+  }
+  .intro-content {
+    font-size: 1.05rem !important;
+  }
+  .intro-content h3 {
+    font-size: 1.55rem !important;
+  }
+  button.primary {
+    padding: 12px 32px !important;
+    font-size: 1rem !important;
+  }
+  .closing {
+    font-size: 1.1rem !important;
+  }
+  .learn-more {
+    font-size: 0. Nine5rem !important;
+  }
+}
+
+/* ULTRA-SMALL — < 375px (iPhone SE) */
+@media (max-width: 375px) {
+  .intro-card {
+    padding: 2rem 1.6rem;
+  }
+  .intro-card h1 {
+    font-size: 2.5rem !important;
+  }
+  .subtitle {
+    font-size: 1.08rem !important;
+  }
+  .intro-content,
+  .intentions,
+  .how-to {
+    font-size: 0.98rem !important;
+  }
+  .intro-content h3 {
+    font-size: 1.45rem !important;
+  }
+  .closing {
+    font-size: 1.05rem !important;
+  }
+}
+
+.intentions li,
+.how-to li {
+  margin-left: 1rem !important;
+  /* padding-left: 0.6rem; */
+}
+
