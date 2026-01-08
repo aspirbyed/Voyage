@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Fourth Candle - Sign In</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue-0: #000814;
+      --blue-1: #001D3D;
+      --blue-2: #003566;
+      --gold-1: #FFC300;
+      --gold-2: #FFD60A;
+      --white: #ffffff;
+      --blackish: #1a1a1a;
+      --radius-md: 16px;
+      --radius-lg: 22px;
+      --card-bg: rgba(0, 29, 61, 0.35);
+      --border-soft: rgba(255, 214, 10, 0.22);
+      --shadow-lg: 0 22px 45px rgba(0, 0, 0, 0.55);
+      --shadow-md: 0 12px 28px rgba(0, 0, 0, 0.45);
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at top, var(--blue-2) 0%, var(--blue-0) 70%);
+      background-attachment: fixed;
+      font-family: 'Inter', sans-serif;
+      color: var(--white);
+      padding: 1rem; 
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 420px;
+      text-align: center;
+      padding: 3rem 2.4rem;
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-lg);
+      margin: 1rem; 
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.9rem;
+      margin-bottom: 0.6rem;
+      color: var(--gold-2);
+      text-shadow: 0 0 20px rgba(255, 214, 10, 0.30);
+    }
+
+    p {
+      font-size: 1.15rem;
+      opacity: 0.9;
+      margin-bottom: 2.2rem;
+    }
+
+    .google-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      background: var(--white);
+      color: var(--blackish);
+      border: none;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-size: 1.12rem;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: var(--shadow-md);
+      transition: 0.25s ease;
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    .google-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.4);
+    }
+
+    .google-btn img { width: 24px; height: 24px; }
+
+    .footer {
+      margin-top: 2rem;
+      margin-bottom: 0;
+      font-size: 0.9rem;
+      opacity: 0.75;
+      color: rgba(255,255,255,0.75);
+    }
+
+    @media (max-width: 500px) {
+      body {
+        padding: 1.5rem 1rem; 
+      }
+
+      .login-card {
+        padding: 2.4rem 1.8rem;
+        margin: 1rem;
+        border-radius: 18px;
+      }
+
+      h1 {
+        font-size: 2.35rem !important;
+      }
+
+      p {
+        font-size: 1.02rem !important;
+      }
+
+      .google-btn {
+        padding: 12px 28px;
+        font-size: 1.05rem;
+      }
+
+      .footer {
+        font-size: 0.85rem;
+      }
+    }
+
+    .login-note {
+      position: absolute;
+      bottom: 1.2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      text-align: center;
+      font-size: 0.78rem;
+      opacity: 0.7;
+      line-height: 1.4;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .login-card {
+      position: relative;  
+      padding-bottom: 4rem; 
+    }
+
+    @media (max-width: 500px) {
+      .login-note {
+        font-size: 0.74rem;
+        bottom: 1rem;
+      }
+      .login-card {
+        padding-bottom: 3.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-card">
+    <h1>The Fourth Candle</h1>
+    <p>Light your Advent with prayer</p>
+
+    <button id="google-login-btn" class="google-btn">
+      <img src="https://www.google.com/favicon.ico" alt=" "Google">
+      Sign in with Google
+    </button>
+
+    <div class="footer">
+      A prayer companion for जाgo Conference 2025 & Calicut Zone
+    </div>
+  </div>
+
+  <div class="login-note">
+    First time on this device? Google may ask for verification — it’s safe.
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+    import { firebaseConfig } from './js/firebase-config.js';
+    
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) window.location.href = 'index.html';
+    });
+
+    document.getElementById('google-login-btn').addEventListener('click', () => {
+      signInWithPopup(auth, provider)
+        .then(() => window.location.href = 'index.html')
+        .catch((err) => alert("Login failed: " + err.message));
+    });
+  </script>
+</body>
+</html>

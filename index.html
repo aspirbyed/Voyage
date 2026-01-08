@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Fourth Candle</title>
+
+  <link rel="icon" type="image/png" href="/images/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/images/favicon.svg" />
+  <link rel="shortcut icon" href="/images/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="MyWebSite" />
+  <link rel="manifest" href="/images/site.webmanifest" />
+  
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Playfair+Display:wght@600;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative&family=Cinzel:wght@400;500;600;700&family=Lato:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Intro Page -->
+  <div id="intro-page" class="screen hidden">
+    <div class="intro-card">
+      <h1>The Fourth Candle</h1>
+      <p class="subtitle">An Advent Prayer Initiative by<br>Jesus Youth Calicut Intercession Ministry</p>
+
+      <div class="intro-content">
+        <p>This Advent, we light the <strong>Fourth Candle</strong> — the candle of <strong>Love</strong>. Together, we can offer thousands of Hail Marys for:</p>
+        <ul class="intentions">
+          <li>For the success of जाgo Conference 2025</li>
+          <li>For Jesus Youth Calicut Zone</li>
+        </ul>
+
+        <h3>How to use this prayer companion</h3>
+        <ol class="how-to">
+          <li>Sign in with Google</li>
+          <li>Choose your patron saint name</li>
+          <li>Set your personal prayer goal</li>
+          <li>Add Hail Marys daily — every prayer counts!</li>
+          <li>Watch our community grow in love</li>
+        </ol>
+
+        <p class="closing">May this little candle of prayer prepare our hearts for the coming of the Infant King.</p>
+        <a href="https://hallow.com/blog/advent-candles-and-advent-wreaths/" target="_blank" rel="noopener" class="learn-more">Learn more about the Advent Candles</a>
+      </div>
+
+      <button class="primary" onclick="startJourney()">Begin My Advent Journey</button>
+    </div>
+  </div>
+
+  <!-- Full-screen loader  -->
+  <div id="initial-loading" style="position:fixed; inset:0; background:#000814; display:flex; align-items:center; justify-content:center; z-index:9999; color:#FFD60A; font-size:1.6rem; font-family:'Lato', sans-serif; text-shadow:0 0 15px rgba(255,214,10,0.5);">
+    Lighting your candle…
+  </div>
+
+  <!-- Another Loading Bruh! -->
+  <div id="loading" class="center">
+    <p>Lighting your candle…</p>
+  </div>
+
+  <!-- Onboarding -->
+  <div id="onboarding" class="screen hidden">
+    <div style="text-align:center; margin: 3rem 0 1rem;">
+      <h1 style="font-family:'Cormorant Garamond',serif; font-size:3.2rem; color:#ffd700; font-weight:700; text-shadow:0 0 20px rgba(255,215,0,0.4); margin:0;">
+        The Fourth Candle
+      </h1>
+    </div>
+
+    <div class="onboarding-card">
+      <!-- Step 1 -->
+      <div id="step1" class="step">
+        <h2>Welcome, pilgrim</h2>
+        <p class="onboarding-text">What is your favorite Saint's name?<br>Or your Baptism name?</p>
+        <input type="text" id="displayName" placeholder="St. " maxlength="40" />
+        <p class="hint">Don't type your real name. Start typing after "St. " — e.g. St. Francis, St. Maria, St. Joseph...</p>
+        <button class="primary" onclick="nextStep(2)">Continue →</button>
+      </div>
+
+      <!-- Step 2 -->
+      <div id="step2" class="step hidden">
+        <h2>How many Hail Marys will you offer this Advent?</h2>
+        <p class="onboarding-text">Your prayer goal lights your candle</p>
+        <div class="goal-input-wrapper">
+          <input type="number" id="goal" value="100" min="1" max="100000" placeholder="Enter your goal" />
+        </div>
+        <p class="hint">Just type your number — e.g. 5000, 25000, or up to 1,00,00,000</p>
+        <button class="primary" onclick="nextStep(3)">Next →</button>
+      </div>
+
+      <!-- Step 3 -->
+      <div id="step3" class="step hidden">
+        <h2>Your prayer intentions</h2>
+        <p class="onboarding-text">These will guide your heart ❤️ toward His Crib this Advent</p>
+        
+        <div class="intentions-fixed">
+          <div class="intention-item">• For Jago Conference 2025</div>
+          <div class="intention-item">• For the youth of Calicut Zone</div>
+        </div>
+        
+        <textarea id="custom-intention" placeholder="Add your personal intention (optional)..."></textarea>
+        <button class="primary" onclick="completeOnboarding()">Begin My Advent Journey</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="home" class="screen hidden">
+    <!-- Title – big, bold, golden, no box -->
+    <div style="text-align:center; margin: 3rem 0 1rem;">
+      <h1 style="font-family:'Cormorant Garamond',serif; font-size:3.2rem; color:#ffd700; font-weight:700; text-shadow:0 0 20px rgba(255,215,0,0.4); margin:0;">
+        The Fourth Candle
+      </h1>
+    </div>
+
+    <!-- Daily Bible Verse — Gentle & Centered -->
+    <div id = "bible-verse-container" style="text-align:center; margin: 1.8rem 0 2.5rem;">
+      <p style="font-size: medium; color: #ffffff; opacity: 0.88; font-style: italic; line-height: 1.7; max-width: 640px; margin: 0 auto; padding: 0 1rem;">
+        “For God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life.”
+        <br><strong>John 3:16</strong>
+      </p>
+    </div>
+
+    <!-- Welcome message – white bold -->
+    <div id = "welcome-msg" style="text-align:center; margin-bottom:2.5rem;">
+      <p style="font-size:1.4rem; color:white; font-weight:600; margin:0;">
+        Welcome, <span id="user-name"></span>
+      </p>
+    </div>
+
+    <!-- My Intentions Card -->
+    <div class="card" style="margin: 2rem auto; max-width: 560px;">
+      <h3 style="text-align: left; margin-bottom: 1rem;">My Intentions</h3>
+      <ul id="my-intentions" style="text-align: left; padding-left: 1.2rem;"></ul>
+    </div>
+
+    <!-- My Journey Card -->
+    <div class="card" style="margin: 2rem auto; max-width: 560px;">
+      <h3 style="text-align: left; margin-bottom: 1rem;">My Journey</h3>
+
+      <div class="progress-section">
+        <div class="progress-bar">
+          <div id="progress-fill" style="width: 0%"></div>
+        </div>
+        <p style="font-size: 1.4rem; margin: 1.5rem 0;"><strong id="progress-text">0 / 100</strong> Hail Marys</p>
+
+        <p style="text-align: left; font-size: 0.90rem; opacity: 0.85; margin-bottom: 1.5rem; line-height: 1.5; color:rgb(157, 157, 157);">
+          Enter the number of Hail Marys you prayed today (or this session) and press Add. You can pray any number of Hail Mary's — even beyond your goal. Because Gods LOVE has no Limits!
+        </p>
+
+        <div style="display: flex; gap: 12px; justify-content: center; align-items: center; margin-top: 1rem;">
+          <input 
+            type="number" 
+            id="custom-add" 
+            placeholder="..." 
+            min="1" 
+            max="5000"
+            style="width: 180px; padding: 12px; font-size: 1.2rem;"
+          />
+          <button class="primary" onclick="addCustom()" style="padding: 10px 10px; font-size: 1rem;">
+            Add
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- My Community -->
+    <div class="card" style="margin: 2rem auto; max-width: 560px;">
+      <h3 style="text-align: left; margin-bottom: 0.5rem;">My Community</h3>
+      <div class="global-counter" style="margin: 1rem 0 1.5rem; padding: 1rem 0; text-align:center; background:rgba(255,215,0,0.1); border-radius:12px;">
+        <h2 id="global-total-text" style="font-size:1.6rem; margin:0rem 0.5rem 0rem 0.5rem; color: rgb(178, 218, 252);"> Loading…</h2>
+        <strong style="font-size:1.05rem; margin:1rem 0.5rem 1rem 0.5rem; color: whitesmoke;">Hail Marys offered so far and counting...</strong>
+      </div>
+      <div id="leaderboard-container" style="max-height: 70vh; overflow-y: auto; padding-right: 8px;">
+        <ul id="community-list" style="list-style: none; padding: 0; margin: 0; text-align: left;"></ul>
+      </div>
+      <p id="total-pilgrims" style="text-align: center; margin-top: 1rem; opacity: 0.8; font-size: 0.9rem;">
+        Loading pilgrims…
+      </p>
+    </div>
+
+    <!-- Logout Button -->
+    <div style="text-align:center; padding: 3rem 0 2rem;">
+      <a href="#" id="logout" style="color:#ffd700; font-size:1rem; text-decoration: none; ">Logout </a>
+    </div>
+
+    <!-- About & Contact + Social Media -->
+    <div class="about-contact">
+      Made with ❤️ <br>by<br>
+      Jesus Youth Calicut Intercession Ministry
+      <p style="margin-top: 1.5rem; font-size: 0.94rem; opacity: 0.8;">
+        <a href="#" onclick="showIntro()" style="color:#FFD60A; text-decoration: none;">Know More →</a>
+      </p>
+      <div class="contact-info">
+        <!-- <div class="contact-email">
+          Follow us:
+          <a href="https://instagram.com/" target="_blank" aria-label="Instagram">Instagram</a>
+        </div> -->
+        <div class="contact-email">
+          For any queries or issues Contact: <a href="https://wa.me/918921705617">+91 892 170 5617</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS?. -->
+  <script type="module" src="js/firebase-config.js"></script>
+  <script type="module" src="js/auth.js"></script>
+  <script type="module" src="js/db.js"></script>
+  <script type="module" src="js/onboarding.js"></script>
+  <script type="module" src="js/home.js"></script>
+  <script type="module" src="js/community.js"></script>
+</body>
+</html>
